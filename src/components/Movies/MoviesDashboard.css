@@ -1,0 +1,22 @@
+table {
+    border-collapse: collapse;
+    border: 1px solid #999;
+  }
+  
+   th,td
+   {
+    border: 1px solid #999;
+    padding: 0.5rem;
+    text-align: center;
+  }
+  td{
+    border-style: none solid; 
+  }
+  caption{
+    text-align: left;
+    margin: 10px;
+  }
+
+.movie-dashboard{
+  margin:50px
+}

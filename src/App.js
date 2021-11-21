@@ -1,23 +1,32 @@
-import logo from './logo.svg';
 import './App.css';
+import { useEffect, useState } from 'react';
+import MovieDashboard from './components/Movies/MoviesDashboard'
+import axios from 'axios';
+import BookingDashboard from './components/Booking/Booking Dashboard/BookingDashboard';
 
 function App() {
+  const [movies, setMovies] = useState([]);
+
+  const fetchMovies = async () =>{
+    try{
+    const response = await axios.get('https://crudcrud.com/api/bd57acad2641444dbc5c475bab877b0e/movies');
+    setMovies(response.data);
+    }
+    catch(e){}
+  }
+
+  useEffect(() =>{
+    fetchMovies()
+  },[]);
+
+  const newBookingHandler= () => {
+    fetchMovies();
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BookingDashboard movieDetails={movies} onNewBooking={newBookingHandler}/>
+      <MovieDashboard movieDetails={movies} />
     </div>
   );
 }
